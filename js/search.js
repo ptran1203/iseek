@@ -46,7 +46,7 @@ const template_map = {
 `
 }
 // const hostUrl = 'http://localhost:8000/'
-const hostUrl = 'http://jsearcher-api.herokuapp.com/'
+const hostUrl = 'https://jsearcher-api.herokuapp.com/'
 let qs = (function(a) {
   if (a == "") return {};
   let b = {};
