@@ -274,6 +274,22 @@ div.more .close {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.keyword {
+  background: #eee;
+  border-radius: 3px 0 0 3px;
+  font-size: 14px;
+  display: inline-block;
+  height: 26px;
+  line-height: 26px;
+  padding: 0 20px 0 23px;
+  position: relative;
+  margin: 0 10px 10px 0;
+  text-decoration: none;
+}
+.keyword a {
+  color: #999;
+  text-decoration: none;
+}
 #jobs {
   width: 70%;
 }

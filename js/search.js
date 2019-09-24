@@ -20,6 +20,13 @@ const template_map = {
 </div>
 </div>
   `,
+2:`
+<li class="keyword">
+  <a href="?q=#word#">
+    #word#
+  </a>
+</li>
+` ,
 3: `
 <div class="modal-dialog">
   <div class="modal-header">
@@ -159,10 +166,16 @@ jQuery(document).ready(function() {
   }
 
 $.ajax({
-  url : getUrl('api/keywords'),
+  url : getUrl('api/keywords?sort_type=1&limit=10'),
   method : "GET",
   success : function(data){
     keywords = data
+    let html = data.slice(0, 10).reduce((acc, item) => {
+      acc += generate_html(item, 2)
+      return acc
+    }, '')
+    console.log(data);
+    $('.left-side ol').html(html)
   },
   error: function(error){
     console.log(error)

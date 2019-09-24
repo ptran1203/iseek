@@ -13,7 +13,12 @@
     <script src="js/search.js"></script>
   </head>
   <body>
-    <img src="imgs/logo.png" alt="Jsearcher">
+    <a href="/">
+      <img src="imgs/logo.png" alt="Jsearcher">
+    </a>
+    <div class="left-side">
+      <ol style="list-style-type: none;"></ol>
+    </div>
     <form class="search-form center-form">
       <div class="search">
         <input type="text" class="searchTerm" placeholder="What are you looking for?">
@@ -24,7 +29,9 @@
     </form>
     <div class="result">
       <div id="jobs"></div>
-      <div><div id="view-detail" class="scrollbar"></div></div>
+      <div class="right-side">
+        <div id="view-detail" class="scrollbar"></div>
+      </div>
     </div>
   </body>
 </html>
