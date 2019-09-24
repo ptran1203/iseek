@@ -107,9 +107,10 @@ if (!classList.includes('active')) {
 }
 
 function viewDetail(self) {
-  let ele = document.getElementById('view-detail')
+  let ele = document.getElementById('view-detail'),
+    loading = document.getElementById('loading')
   // beforsend
-  ele.className += ' bar'
+  loading.className += ' spinner'
   ele.classList.remove('detail')
 
   const xhr = new XMLHttpRequest()
@@ -121,7 +122,7 @@ function viewDetail(self) {
       ele.className += ' detail'
       ele.innerHTML = generate_html(JSON.parse(xhr.response), 3)
       ele.style.overflowY = 'scroll'
-      ele.classList.remove('bar')
+      loading.classList.remove('spinner')
       if (!ele.className.split(' ').includes('opened')) {
         ele.className += ' opened'
       }
@@ -135,7 +136,8 @@ function viewDetail(self) {
 * Jquery
 */
 jQuery(document).ready(function() {
-  let instance = $('#jobs'),
+  let loading = $('#loading'),
+    instance = $('#jobs')
     query = qs['q']
   if (query) {
     $('form').attr('class', 'search-form')
@@ -144,10 +146,10 @@ jQuery(document).ready(function() {
       method : "GET",
       beforeSend: function() {
         instance.html('')
-        instance.addClass("bar")
+        loading.addClass('spinner')
       },
       success : function(data){
-        instance.removeClass("bar")
+        loading.removeClass('spinner')
         let html = data.reduce((acc, item) => {
           acc += generate_html(item, 1)
           return acc
@@ -165,72 +167,38 @@ jQuery(document).ready(function() {
     })
   }
 
-$.ajax({
-  url : getUrl('api/keywords?sort_type=1&limit=10'),
-  method : "GET",
-  success : function(data){
-    keywords = data
-    let html = data.slice(0, 10).reduce((acc, item) => {
-      acc += generate_html(item, 2)
-      return acc
-    }, '')
-    console.log(data);
-    $('.left-side ol').html(html)
-  },
-  error: function(error){
-    console.log(error)
-  }
-})
-
-$.ajax({
-  url : getUrl('api/count'),
-  method : "GET",
-  success : function(data){
-    keywords = data
-    $('input:text').attr('placeholder',`search ${data.count || 0} jobs`);
-  },
-  error: function(error){
-    console.log(error)
-  }
-})
-
-// Ajax get search data
-$('.search-form').on('submit', function() {
-  let query = $('.searchTerm').val()
-  window.location.replace(`?q=${query}`)
-  return false
-})
-
-$('.search-forms').on('submit', function(e) {
-  e.preventDefault()
-  let inputBox = $('.searchTerm'),
-    instance = $('#jobs'),
-    self = $(this)
-  console.log('?',qs)
   $.ajax({
-    url : getUrl('api/search?q=' + qs['q']),
+    url : getUrl('api/keywords?sort_type=1&limit=10'),
     method : "GET",
-    beforeSend: function() {
-      instance.html('')
-      instance.addClass("bar")
-    },
     success : function(data){
-      self.removeClass('center-from')
-      instance.removeClass("bar")
-      let html = data.reduce((acc, item) => {
-        acc += generate_html(item, 1)
+      keywords = data
+      let html = data.slice(0, 10).reduce((acc, item) => {
+        acc += generate_html(item, 2)
         return acc
       }, '')
-
-      instance.append(html)
-
-      $('#keywords').html(data.length + ' results: ' + query)
-      // Set default
-      inputBox.val('')
+      $('.left-side ol').html(html)
     },
     error: function(error){
       console.log(error)
     }
   })
-})
+
+  $.ajax({
+    url : getUrl('api/count'),
+    method : "GET",
+    success : function(data){
+      keywords = data
+      $('input:text').attr('placeholder',`search ${data.count || 0} jobs`);
+    },
+    error: function(error){
+      console.log(error)
+    }
+  })
+
+  // Ajax get search data
+  $('.search-form').on('submit', function() {
+    let query = $('.searchTerm').val()
+    window.location.replace(`?q=${query}`)
+    return false
+  })
 })
