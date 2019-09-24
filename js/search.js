@@ -149,7 +149,7 @@ jQuery(document).ready(function() {
         loading.addClass('spinner')
       },
       success : function(data){
-        loading.removeClass('spinner')
+        // loading.removeClass('spinner')
         let html = data.reduce((acc, item) => {
           acc += generate_html(item, 1)
           return acc
