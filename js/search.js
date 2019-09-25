@@ -52,8 +52,8 @@ const template_map = {
 </div>
 `
 }
-// const hostUrl = 'http://localhost:8000/'
-const hostUrl = 'https://jsearcher-api.herokuapp.com/'
+const hostUrl = 'http://localhost:8000/'
+// const hostUrl = 'https://jsearcher-api.herokuapp.com/'
 let qs = (function(a) {
   if (a == "") return {};
   let b = {};
@@ -87,23 +87,22 @@ return content
 
 function closeDetail() {
   let ele = document.getElementById('view-detail')
-  ele.style.overflowY = ''
-  ele.innerHTML = ''
+  ele.style.display = "none"
 }
 
 function activeElement(self) {
-let classList = self.className.split(' '),
-  activeEle = document.getElementsByClassName('active')
+  let classList = self.className.split(' '),
+    activeEle = document.getElementsByClassName('active')
 
-activeEle = activeEle[0]
-if (activeEle) {
-  activeEle.classList.remove("active")
-}
-// remove all pre-active element
+  activeEle = activeEle[0]
+  if (activeEle) {
+    activeEle.classList.remove("active")
+  }
+  // remove all pre-active element
 
-if (!classList.includes('active')) {
-  self.className += ' active'
-}
+  if (!classList.includes('active')) {
+    self.className += ' active'
+  }
 }
 
 function viewDetail(self) {
@@ -112,6 +111,7 @@ function viewDetail(self) {
   // beforsend
   loading.className += ' spinner'
   ele.classList.remove('detail')
+  ele.style.display = 'block'
 
   const xhr = new XMLHttpRequest()
   const pk = self.getAttribute('pk')
