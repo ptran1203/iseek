@@ -161,20 +161,6 @@ div.more .close {
   background-color: rgba(253, 137, 37, 0.2);
   color: #fd8925;
 }
-.search-result h2 {
-  color: #2a5f9c;
-}
-.search-result a {
-  text-decoration: none;
-  color: #248afa;
-}
-.search-result .icon {
-  margin: 0 15px 0 0;
-}
-.search-result .reviews {
-  color: #fd8925;
-}
-
 .search-result div > div p {
   color: #4c4c4c;
   margin-top: 10px;
@@ -196,7 +182,7 @@ div.more .close {
     color:#1f5656;
 }
 .job-desc {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.5;
   padding: 14px;
 
@@ -310,5 +296,13 @@ div.more .close {
   }
   #view-detail {
     position: absolute;
+  }
+  .detail {
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    height: 100%;
+    top: 0;
+    width: 100%;
+    left: 0;
   }
 }
