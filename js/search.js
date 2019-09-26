@@ -6,13 +6,13 @@ const template_map = {
   <img src="#post_img#" width="200" />
 </div>
 <div class="content">
-  <h4 class="job-title">#title#</h4>
+  <h4 class="job-title">#title_m#</h4>
   <a href="#post_url#" target="_blank">Goto page</a>
   <p>
     <span class="salary">#salary_range#</span>
   </p>
   <div>
-    <p>#content#</p>
+    <p>#content_m#</p>
   </div>
   <div class="actions">
     <span class="date">#post_date#</span>
@@ -73,7 +73,8 @@ function getUrl(url) {
   return hostUrl + url
 }
 
-let keywords = []
+let keywords = [],
+  jobs = []
 
 function generate_html(data, templateId) {
 let content = template_map[templateId] || ''
@@ -106,30 +107,20 @@ function activeElement(self) {
 }
 
 function viewDetail(self) {
-  let ele = document.getElementById('view-detail'),
-    loading = document.getElementById('loading')
-  // beforsend
-  loading.className += ' spinner'
+  let ele = document.getElementById('view-detail')
   ele.classList.remove('detail')
   ele.style.display = 'block'
 
-  const xhr = new XMLHttpRequest()
   const pk = self.getAttribute('pk')
-
-  xhr.open('GET', getUrl('api/post/') + pk)
-  xhr.onload = function () {
-    if (xhr.status == 200) {
-      ele.className += ' detail'
-      ele.innerHTML = generate_html(JSON.parse(xhr.response), 3)
-      ele.style.overflowY = 'scroll'
-      loading.classList.remove('spinner')
-      if (!ele.className.split(' ').includes('opened')) {
-        ele.className += ' opened'
-      }
-      activeElement(self)
-    }
+  let job = jobs.find(j => j.id == pk)
+  ele.className += ' detail'
+  
+  ele.innerHTML = generate_html(job, 3)
+  ele.style.overflowY = 'scroll'
+  if (!ele.className.split(' ').includes('opened')) {
+    ele.className += ' opened'
   }
-  xhr.send()
+  activeElement(self)
 }
 
 /**
@@ -154,6 +145,7 @@ jQuery(document).ready(function() {
           acc += generate_html(item, 1)
           return acc
         }, '')
+        jobs = data
   
         instance.append(html)
   

@@ -220,6 +220,7 @@ div.more .close {
   border-bottom: 1px solid #e6760e;
 }
 .result {
+  margin: 0 auto;
   display: flex;
   justify-content: inherit;
 }
