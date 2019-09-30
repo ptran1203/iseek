@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,600i,700,700i,900,900i&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/search.css">
-    <link rel="stylesheet" type="text/css" href="css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="css/nav.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="js/search.js"></script>
@@ -16,26 +16,24 @@
   <body>
     <!-- NAV BAR-->
     <span class="open" onclick="openNav()">&#9776;</span>
-    <a href="/" id="home">Geti</a>
-    <div id="nav" class="overlay light nav-main">
-    <a href="javascript:void();" onclick="closeNav()" class="btn-close">&#9932;</a>
-      <a href="/" style="margin: auto 0;" id="hide" class="nav-item">Geti</a>
-      <div class="overlay-content">
-        <form class="search-form center-form">
-            <div class="search">
-              <input type="text" class="searchTerm" placeholder="What are you looking for?">
-              <button type="submit" class="searchButton">
-                <i class="fa fa-search"></i>
-              </button>
-            </div>
-          </form>
-        <a href="/resume" class="nav-item link-anm">Me</a>
-      </div>
+    <div id="nav" class="overlay">
+        <a href="javascript:void();" onclick="closeNav()" class="close">&#9932;</a>
+        <div class="overlay-content">
+          <a href="/" id="home" class="nav-item">Home</a>
+          <a href="/resume" id="about" class="nav-item">About me</a>
+            <form class="search-form center-form">
+              <div class="search">
+                <input type="text" class="searchTerm" placeholder="What are you looking for?">
+                <input type="submit" class="searchButton" value="Get it">
+                </input>
+            </form>
+          </div>
+        </div>
     </div>
 
-    <div class="left-side">
+    <!-- <div class="left-side">
       <ol style="list-style-type: none;"></ol>
-    </div>
+    </div> -->
 
     <div id="loading"></div>
     <div class="result container">
@@ -44,5 +42,15 @@
         <div id="view-detail" class="scrollbar"></div>
       </div>
     </div>
+  <script>
+    function openNav() {
+      document.getElementById("nav").style.width = "100%";
+      $(".open")[0].style.opacity = 0;
+    }
+    function closeNav() {
+      document.getElementById("nav").style.width = "0";
+      $(".open")[0].style.opacity = 1;
+    }
+  </script>
   </body>
 </html>

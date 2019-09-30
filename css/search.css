@@ -231,37 +231,38 @@ div.more .close {
 }
 .searchTerm {
   width: 100%;
-  border: 3px solid #00B4CC;
-  border-right: none;
+  border: 1px solid rgb(255, 255, 255);
+  border-bottom: 1px solid rgb(27, 126, 70);
   padding: 5px;
   height: 36px;
-  border-radius: 5px 0 0 5px;
   outline: none;
-  color: #9DBFAF;
+  color: rgb(59, 155, 110);
   font-size: 20px;
 }
 .searchTerm:focus{
   color: rgb(28, 29, 29);
 }
 .searchButton {
+  margin-left: 5px;
   width: 56px;
-  /* height: 36px; */
-  border: 1px solid #00B4CC;
-  background: #00B4CC;
+  border: none;
+  /* border-bottom: 3px solid rgb(0, 112, 49); */
+  background: rgb(255, 255, 255);
   text-align: center;
-  color: #fff;
-  border-radius: 0 5px 5px 0;
+  color: rgb(20, 121, 16);
   cursor: pointer;
-  font-size: 26px;
+  font-weight: 200;
+  font-size: 20px;
 }
-.search-form{
-  width: 40%;
-  margin: auto;
+.search-form {
+  position: absolute;
+  /* top: 50%; */
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 .center-form {
   position: absolute;
   top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
 }
 .keyword {
