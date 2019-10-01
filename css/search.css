@@ -189,12 +189,12 @@ div.more .close {
 }
 .close-btn {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 10px;
+  right: 10px;
   width: 35px;
   height: 30px;
-  background: rgb(160, 151, 151);
-  color: #fff;
+  background: rgb(241, 241, 241);
+  color: #d66c09;
   cursor: pointer;
   border: 0;
   font-size: 24px;
@@ -232,15 +232,14 @@ div.more .close {
 .searchTerm {
   width: 100%;
   border: 1px solid rgb(255, 255, 255);
-  border-bottom: 1px solid rgb(27, 126, 70);
+  border-bottom: 1px solid #d66c09;
   padding: 5px;
   height: 36px;
   outline: none;
-  color: rgb(59, 155, 110);
   font-size: 20px;
 }
 .searchTerm:focus{
-  color: rgb(28, 29, 29);
+  color: rgb(63, 63, 63);
 }
 .searchButton {
   margin-left: 5px;
@@ -317,5 +316,25 @@ div.more .close {
     /* width: 100%; */
     left: 0;
     padding: 20px;
+  }
+  .searchTerm {
+    border: 1px solid transparent;
+    background: transparent;
+    border-bottom: 1px solid #d66c09;
+    height: 36px;
+    outline: none;
+    font-size: 20px;
+    color: black;
+  }
+  .searchTerm::placeholder {
+    color: #F5F5F5;
+  }
+  .searchTerm:focus {
+    color: #F5F5F5;
+  }
+  .searchButton {
+    border: transparent;
+    background: transparent;
+    color: rgb(0, 255, 0);
   }
 }

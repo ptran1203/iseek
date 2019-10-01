@@ -31,30 +31,35 @@ const template_map = {
 3: `
 <div class="modal-dialog">
   <div class="modal-header">
-  <h4 style="text-align:center;"><a href="#post_url#" target="_blank">#title#</a></h4>
-  <button 
-    class="close-btn"
-    onclick="closeDetail(this)">
-    &times;
-  </button>
+  <h4 class="job-detail-title"><a href="#post_url#" target="_blank">#title#</a></h4>
+  <button class="close-btn"onclick="closeDetail(this)">⛌</button>
   </div>
   <div class="modal-body">
       <img src="#post_img#" width="200" style="display:block;margin: 10px auto;"/>
-      <div style="padding:14px" class="far fa-money-bill-alt">  <span style="color:#fd8925">#salary_range#</span></div>
+      <div class="job-infos">
+        <div class="job-info far fa-money-bill-alt">
+          <span style="color:#a95508">#salary_range#</span>
+        </div>
+        <div class="job-info far fa-clock	">
+          <span style="color:#a95508">#post_date#</span>
+        </div>
+        <div class="job-info fas fa-map-marker-alt">
+          <span style="color:#a95508">#address#</span>
+        </div>
+      </div>
+
       <div class="job-desc" style="white-space: pre-line">#content#</div>
   </div>
   <div class="modal-footer">
-      <p>
-      <span>#post_date#</span>
-      <span>#address#</span>
-      </p>
-      <a href="#post_url#" class="btn" id="btn_ingresar">Appy</a>
+      <a href="#post_url#" class="btn">Appy</a>
   </div>
 </div>
 `
 }
-// const hostUrl = 'http://localhost:8000/'
-const hostUrl = 'https://iseek.herokuapp.com/'
+const hostUrl = 'http://localhost:8000/'
+// const hostUrl = 'https://iseek.herokuapp.com/'
+
+
 let qs = (function(a) {
   if (a == "") return {};
   let b = {};

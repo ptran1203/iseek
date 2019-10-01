@@ -1,0 +1,22 @@
+a {
+    text-decoration: none;
+}
+.job-detail-title {
+    margin-top: 45px;
+    text-align: center;
+}
+.job-detail-title a {
+    color: #225b86;
+}
+.job-info {
+    padding: 6px 14px;
+}
+.job-info span {
+    padding: 5px;
+}
+.modal-body {
+    padding: 14px;
+}
+.job-info {
+    display: block;
+}
