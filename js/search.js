@@ -1,9 +1,10 @@
 
 const template_map = {
+  // <img src="#post_img#" width="200" />
   1: `
   <div class="search-result" pk="#id#" onclick="viewDetail(this)">
 <div class="icon">
-  <img src="#post_img#" width="200" />
+  
 </div>
 <div class="content">
   <h4 class="job-title">#title_m#</h4>
@@ -52,8 +53,8 @@ const template_map = {
 </div>
 `
 }
-const hostUrl = 'http://localhost:8000/'
-// const hostUrl = 'https://jsearcher-api.herokuapp.com/'
+// const hostUrl = 'http://localhost:8000/'
+const hostUrl = 'https://iseek.herokuapp.com/'
 let qs = (function(a) {
   if (a == "") return {};
   let b = {};

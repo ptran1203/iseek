@@ -282,13 +282,23 @@ div.more .close {
   text-decoration: none;
 }
 #jobs {
-  width: 70%;
+  width: 50%;
+}
+.left-side {
+  width: 20%;
+  display: grid;
 }
 
 /* For mobile */
 @media screen and (max-width: 959px) {
   .search-result .icon {
     display: none;
+  }
+  .result {
+    flex-direction: column;
+  }
+  .left-side {
+    width: 100%;
   }
   #jobs {
     width: 100%;
