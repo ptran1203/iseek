@@ -188,11 +188,9 @@ div.more .close {
 
 }
 .close-btn {
-  position: absolute;
+  position: fixed;
   top: 10px;
   right: 10px;
-  width: 35px;
-  height: 30px;
   background: rgb(241, 241, 241);
   color: #d66c09;
   cursor: pointer;
@@ -258,11 +256,6 @@ div.more .close {
   /* top: 50%; */
   left: 50%;
   transform: translate(-50%, 0);
-}
-.center-form {
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
 }
 .keyword {
   background: #eee;
