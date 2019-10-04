@@ -56,8 +56,8 @@ const template_map = {
 </div>
 `
 }
-// const hostUrl = 'http://localhost:8000/'
-const hostUrl = 'https://iseek.herokuapp.com/'
+const hostUrl = 'http://localhost:8000/'
+// const hostUrl = 'https://iseek.herokuapp.com/'
 
 
 let qs = (function(a) {
@@ -134,16 +134,18 @@ function viewDetail(self) {
 */
 jQuery(document).ready(function() {
   let loading = $('#loading'),
-    instance = $('#jobs')
-    query = qs['q']
+    instance = $('#jobs'),
+    query = qs['q'],
+    footer = $('#footer')
   if (query) {
     $('form').attr('class', 'search-form')
     $.ajax({
-      url : getUrl('api/search?q=' + qs['q']),
+      url : getUrl('api/search?q=' + query),
       method : "GET",
       beforeSend: function() {
         instance.html('')
         loading.addClass('spinner')
+
       },
       success : function(data){
         loading.removeClass('spinner')
@@ -152,9 +154,24 @@ jQuery(document).ready(function() {
           return acc
         }, '')
         jobs = data
-  
-        instance.append(html)
-  
+
+        let style = "font-family:monospace;text-align:center;padding:4px;color:#2c5656;",
+          query_styled = `<span style="color:#982e2e">${query}</span>`
+        
+        if (jobs.length){
+          instance.append(
+            `<h3 style="${style}">
+              ${jobs.length} ${query_styled} jobs for you
+            </h3>`
+          )
+          instance.append(html)
+        } else {
+          instance.append(
+          `<div class="empty-jobs">
+           <p> Sorry, we can't find any ${query_styled} jobs for you </p>
+          </div>`)
+        }
+        footer.css('margin-top', '50px')
         // $('#keywords').html(data.length + ' results: ' + query)
         // Set default
         // inputBox.val('')
