@@ -8,7 +8,6 @@ const template_map = {
 </div>
 <div class="content">
   <h4 class="job-title">#title_m#</h4>
-  <a href="#post_url#" target="_blank">Goto page</a>
   <p>
     <span class="salary">#salary_range#</span>
   </p>
@@ -16,7 +15,7 @@ const template_map = {
     <p>#content_m#</p>
   </div>
   <div class="actions">
-    <span class="date">#post_date#</span>
+    <span class="post-date">#post_date#</span>
   </div>
 </div>
 </div>
@@ -56,8 +55,8 @@ const template_map = {
 </div>
 `
 }
-// const hostUrl = 'http://localhost:8000/'
-const hostUrl = 'https://iseek.herokuapp.com/'
+const hostUrl = 'http://localhost:8000/'
+// const hostUrl = 'https://iseek.herokuapp.com/'
 
 
 let qs = (function(a) {

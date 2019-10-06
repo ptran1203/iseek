@@ -14,7 +14,7 @@ h1 {
 /* eof Generic styles */
 
 .searchBox-fakeInput {
-    background: rgb(255, 255, 255);
+    background: rgb(255, 255, 255)
     border: none;
     display: table;
 }
@@ -279,6 +279,10 @@ div.more .close {
 .left-side {
   width: 20%;
   display: grid;
+}
+.post-date {
+  color: rgb(126, 126, 126);
+  float: right;
 }
 
 /* For mobile */
