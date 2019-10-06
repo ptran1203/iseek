@@ -55,8 +55,8 @@ const template_map = {
 </div>
 `
 }
-const hostUrl = 'http://localhost:8000/'
-// const hostUrl = 'https://iseek.herokuapp.com/'
+// const hostUrl = 'http://localhost:8000/'
+const hostUrl = 'https://iseek.herokuapp.com/'
 
 
 let qs = (function(a) {
