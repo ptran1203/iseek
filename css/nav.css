@@ -56,10 +56,19 @@
     margin-top: 100px;
     border-top: 1px solid white;
   }
-} 
-
+}
+.logo img{
+  width: 60px;
+}
+.popular {
+  font-family: 'Courier New', Courier, monospace;
+  color: #494949;
+}
 
 @media screen and (max-width: 1024px) {
+  .popular {
+    margin-top: 100px;
+  }
   #nav {
     top: 5;
     left: 0;

@@ -17,6 +17,18 @@ a {
 .modal-body {
     padding: 14px;
 }
+.modal-footer {
+    background-color: #999999;
+    text-align: center;
+    padding: 12px;
+    position: fixed;
+    bottom: 0;
+    right: 5px;
+}
+.modal-footer a {
+    color: rgb(243, 243, 243);
+    padding: 5px;
+}
 .job-info {
     display: block;
 }

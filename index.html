@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>iseek</title>
+    <title>liweisure - the job searcher</title>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,600i,700,700i,900,900i&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" rel="stylesheet">
@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="css/nav.css">
     <link rel="stylesheet" type="text/css" href="css/post.css">
     <link rel="stylesheet" type="text/css" href="css/footer.css">
+    <link rel="stylesheet" type="text/css" href="css/pagination.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   </head>
@@ -20,25 +21,26 @@
     <div id="nav" class="overlay">
         <a href="javascript:void();" onclick="closeNav()" class="close">&#9932;</a>
         <div class="overlay-content">
-          <a href="/itseek" class="logo"><img src="imgs/logo.png" alt="iseek-job-search"></a>
-          <a href="/" id="home" class="nav-item link-anm">Home</a>
-          <a href="/resume" id="about" class="nav-item link-anm">About me</a>
+          <a href="/" class="logo"><img src="imgs/logo.png" alt="liweisure"></a>
+          <!-- <a href="/" id="home" class="nav-item link-anm">Home</a> -->
+          <!-- <a href="/resume" id="about" class="nav-item link-anm">About me</a> -->
             <form class="search-form">
               <div class="search">
                 <input type="text" class="searchTerm" placeholder="What are you looking for?">
                 <input type="submit" class="searchButton" value="Get it">
-                </input>
+                <!-- </input> -->
             </form>
           </div>
         </div>
     </div>
-
     <div id="loading"></div>
     <div class="result container">
       <div class="left-side">
+        <h4 class="popular">popular search</h4>
         <ol style="list-style-type: none;"></ol>
       </div>
-      <div id="jobs"></div>
+      <div id="jobs">
+      </div>
       <div class="right-side">
         <div id="view-detail" class="scrollbar"></div>
       </div>

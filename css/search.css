@@ -77,11 +77,15 @@ h1 {
     margin-left: -25px;
     display: inline-block;
     height: 50px;
-    border: 3px solid rgba(150, 25, 25, 0.3);
+    border: 3px solid rgba(255, 255, 255, 0.3);
     border-top-color: rgb(230, 101, 16);
+    border-bottom-color: darkcyan;
     border-radius: 50%;
     animation: spin 1s ease-in-out infinite;
     -webkit-animation: spin 1s ease-in-out infinite;
+}
+.spinner-detail {
+  top: 70%;
 }
 @keyframes spin {
   to { -webkit-transform: rotate(360deg); }
@@ -169,14 +173,17 @@ div.more .close {
   color: #fd8925;
 }
 .active {
-  background-color: rgb(241, 241, 241);
+  background-color: rgba(241, 241, 241, 0.5);
+  border-left: 2px solid rgb(48, 48, 48);
 }
 .detail {
-  /* overflow-y: scroll; */
-  background-color: rgb(241, 241, 241);
-  position: fixed;
+  background-color: rgba(241, 241, 241, 0.5);
+  position: absolute;
   height: 95%;
-  top: 30px;
+  position: absolute;
+  top: 150px;
+  width: 40%;
+  z-index: 999;
 }
 .job-title {
     color:#1f5656;
@@ -185,7 +192,6 @@ div.more .close {
   font-size: 16px;
   line-height: 1.5;
   padding: 14px;
-
 }
 .close-btn {
   position: fixed;
@@ -206,16 +212,17 @@ div.more .close {
 
 .scrollbar::-webkit-scrollbar
 {
-	width: 6px;
+	width: 3px;
 	background-color: #F5F5F5;
 }
 
 .scrollbar::-webkit-scrollbar-thumb
 {
-	background-color: #d66c09;
+	background-color: #3b8cce;
 }
 .matched {
-  border-bottom: 1px solid #e6760e;
+  /* border-bottom: 1px solid #e6760e; */
+  background: #dbdbdb;
 }
 .result {
   margin: 0 auto;
@@ -270,7 +277,7 @@ div.more .close {
   text-decoration: none;
 }
 .keyword a {
-  color: #999;
+  color: rgb(201, 201, 201);
   text-decoration: none;
 }
 #jobs {
@@ -278,7 +285,7 @@ div.more .close {
 }
 .left-side {
   width: 20%;
-  display: grid;
+  /* display: grid; */
 }
 .post-date {
   color: rgb(126, 126, 126);
@@ -310,9 +317,9 @@ div.more .close {
     position: absolute;
     height: 100%;
     top: 0;
-    /* width: 100%; */
+    width: 100%;
     left: 0;
-    padding: 20px;
+    /* padding: 20px; */
   }
   .searchTerm {
     border: 1px solid transparent;
@@ -332,6 +339,6 @@ div.more .close {
   .searchButton {
     border: transparent;
     background: transparent;
-    color: rgb(0, 255, 0);
+    color: rgb(19, 197, 19);
   }
 }
