@@ -55,7 +55,7 @@ const template_map = {
 </div>
 `
 }
-// const hostUrl = 'http://localhost:7555/'
+// const hostUrl = 'http://localhost:8000/'
 const hostUrl = 'https://iseek.herokuapp.com/'
 
 let gquery
@@ -226,7 +226,7 @@ jQuery(document).ready(function() {
         if (jobs.length){
           instance.append(
             `<h3 style="${style}">
-              ${response.total} ${query_styled} jobs for you
+              ${response.total} ${query_styled} jobs found
             </h3>
             <i style=${style}>page ${qs['page']}/${response.total_page}</i>
             `
@@ -236,7 +236,7 @@ jQuery(document).ready(function() {
         } else {
           instance.append(
           `<div class="empty-jobs">
-          <p> Sorry, we can't find any ${query_styled} jobs for you </p>
+          <p> Sorry, we can't find any ${query_styled} jobs</p>
           </div>`)
         }
         footer.css('margin-top', '50px')
