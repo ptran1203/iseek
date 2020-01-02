@@ -37,13 +37,13 @@ const template_map = {
       <img src="#post_img#" width="200" style="display:block;margin: 10px auto;"/>
       <div class="job-infos">
         <div class="job-info far fa-money-bill-alt">
-          <span style="color:#a95508">#salary_range#</span>
+          <span id="salary" style="color:#9e9e9e">#salary_range#</span>
         </div>
         <div class="job-info far fa-clock	">
-          <span style="color:#a95508">#post_date#</span>
+          <span style="color:#9e9e9e">#post_date#</span>
         </div>
         <div class="job-info fas fa-map-marker-alt">
-          <span style="color:#a95508">#address#</span>
+          <span style="color:#9e9e9e">#address#</span>
         </div>
       </div>
 
@@ -151,6 +151,22 @@ async function fetchContent(postId) {
       instance.innerHTML = data['content']
       footer.style.display = 'block'
       // footer.style.position = 'fixed'
+    })
+  
+  console.log('start')
+  estimateSalary(postId)
+}
+
+async function estimateSalary(postId) {
+  let instance = document.getElementById("salary")
+  if (instance.innerHTML != '') {
+    return
+  }
+  fetch(getUrl(`api/posts/${postId}/salary`))
+    .then(response => response.json())
+    .then(data => {
+      instance.style.pointer = 'cursor'
+      instance.innerHTML = '~ $' + Math.round(parseFloat(data['salary']), 2)
     })
 }
 
