@@ -14,11 +14,16 @@ a {
 .job-info span {
     padding: 5px;
 }
+.job-desc {
+    -webkit-font-smoothing: antialiased;
+    font-family: "Avenir Next", sans-serif !important;
+}
 .modal-body {
     padding: 14px;
 }
 .modal-footer {
-    background-color: #999999;
+    border-radius: 5px;
+    background-color: #4182e4;
     text-align: center;
     padding: 12px;
     position: fixed;

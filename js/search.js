@@ -30,11 +30,10 @@ const template_map = {
 3: `
 <div class="modal-dialog">
   <div class="modal-header">
-  <h4 class="job-detail-title"><a rel="nofollow" href="#post_url#" target="_blank">#title_m#</a></h4>
+  <h3 class="job-detail-title"><a rel="nofollow" href="#post_url#" target="_blank">#title_m#</a></h3>
   <button class="close-btn"onclick="closeDetail(this)">⛌</button>
   </div>
   <div class="modal-body">
-      <img src="#post_img#" width="200" style="display:block;margin: 10px auto;"/>
       <div class="job-infos">
         <div class="job-info far fa-money-bill-alt">
           <span id="salary" style="color:#9e9e9e">#salary_range#</span>
@@ -43,14 +42,14 @@ const template_map = {
           <span style="color:#9e9e9e">#post_date#</span>
         </div>
         <div class="job-info fas fa-map-marker-alt">
-          <span style="color:#9e9e9e">#address#</span>
+          <span style="font-weight:100">#address#</span>
         </div>
       </div>
 
       <div class="job-desc" id="job-content" style="white-space: pre-line"></div>
   </div>
   <div class="modal-footer" id="job-footer">
-      <a rel="nofollow" href="#post_url#" class="btn">Appy</a>
+      <a target="_blank" rel="nofollow" href="#post_url#" class="btn">Apply</a>
   </div>
 </div>
 `

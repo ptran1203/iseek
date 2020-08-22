@@ -173,11 +173,11 @@ div.more .close {
   color: #fd8925;
 }
 .active {
-  background-color: rgba(241, 241, 241, 0.5);
-  border-left: 2px solid rgb(48, 48, 48);
+  border-left: 2px solid rgb(194, 54, 54);
 }
 .detail {
-  background-color: rgba(241, 241, 241, 0.5);
+  border-radius: 5px;
+  border: 1px solid rgb(119, 119, 119);
   position: absolute;
   height: 95%;
   position: absolute;
@@ -313,6 +313,7 @@ div.more .close {
     position: fixed;
   }
   .detail {
+    border:none;
     background-color: rgb(255, 255, 255);
     position: absolute;
     height: 100%;
