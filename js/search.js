@@ -30,11 +30,11 @@ const template_map = {
 3: `
 <div class="modal-dialog">
   <div class="modal-header">
-  <h3 class="job-detail-title"><a rel="nofollow" href="#post_url#" target="_blank">#title_m#</a></h3>
-  <button class="close-btn"onclick="closeDetail(this)">⛌</button>
-  </div>
-  <div class="modal-body">
-      <div class="job-infos">
+    <h3 class="job-detail-title"><a rel="nofollow" href="#post_url#" target="_blank">#title_m#</a></h3>
+    <div class="modal-footer" id="job-footer">
+      <a style="width: 50px" target="_blank" rel="nofollow" href="#post_url#">Apply</a>
+    </div>
+    <div class="job-infos">
         <div class="job-info far fa-money-bill-alt">
           <span id="salary" style="color:#9e9e9e">#salary_range#</span>
         </div>
@@ -45,11 +45,10 @@ const template_map = {
           <span style="font-weight:100">#address#</span>
         </div>
       </div>
-
-      <div class="job-desc" id="job-content" style="white-space: pre-line"></div>
+    <button class="close-btn"onclick="closeDetail(this)">⛌</button>
   </div>
-  <div class="modal-footer" id="job-footer">
-      <a target="_blank" rel="nofollow" href="#post_url#" class="btn">Apply</a>
+  <div class="modal-body scrollbar">
+      <div class="job-desc" id="job-content" style="white-space-old: pre-line"></div>
   </div>
 </div>
 `
@@ -124,7 +123,7 @@ function viewDetail(self) {
   ele.innerHTML = generate_html(job, 3)
   // Get content and then append data to hmtl
   fetchContent(pk)
-  ele.style.overflowY = 'scroll'
+  // ele.style.overflowY = 'scroll'
   if (!ele.className.split(' ').includes('opened')) {
     ele.className += ' opened'
   }
@@ -137,6 +136,18 @@ function closeDetail() {
   setMainWidth('50%')
 }
 
+function cleanedContent(content) {
+  let blocks = content.split("\n\n");
+  return blocks.reduce((acc, block) => {
+    let [head, ...tail] = block.split("\n");
+    let tailList = tail.reduce((a, t) => {
+      return a + "<li>" + t + "</li>";
+    }, "");
+    acc.push(`<b>${head}</b>\n<ul style="list-style-type: disc">${tailList}</ul>`);
+    return acc;
+  }, []).join("");
+}
+
 async function fetchContent(postId) {
   let instance = document.getElementById("job-content"),
     footer = document.getElementById("job-footer")
@@ -147,12 +158,12 @@ async function fetchContent(postId) {
     .then(response => response.json())
     .then(data => {
       instance.classList.remove('spinner', 'spinner-detail')
-      instance.innerHTML = data['content']
+      instance.innerHTML =  cleanedContent(data['content'])
+     
       footer.style.display = 'block'
       // footer.style.position = 'fixed'
     })
   
-  console.log('start')
   estimateSalary(postId)
 }
 

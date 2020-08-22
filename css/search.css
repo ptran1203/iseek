@@ -174,15 +174,17 @@ div.more .close {
 }
 .active {
   border-left: 2px solid rgb(194, 54, 54);
+  background-color: #fdfdfd;
 }
 .detail {
   border-radius: 5px;
-  border: 1px solid rgb(119, 119, 119);
+  background-color: #fdfdfd;
+  /* border: 1px solid rgb(206, 206, 206); */
   position: absolute;
-  height: 95%;
+  height: 100%;
   position: absolute;
   top: 150px;
-  width: 40%;
+  width: 39%;
   z-index: 999;
 }
 .job-title {
@@ -194,7 +196,7 @@ div.more .close {
   padding: 14px;
 }
 .close-btn {
-  position: fixed;
+  position: absolute;
   top: 10px;
   right: 10px;
   background: rgb(241, 241, 241);
@@ -311,13 +313,14 @@ div.more .close {
   }
   #view-detail {
     position: fixed;
+    top: 0;
   }
   .detail {
     border:none;
     background-color: rgb(255, 255, 255);
     position: absolute;
     height: 100%;
-    top: 0;
+    top: 10%;
     width: 100%;
     left: 0;
     /* padding: 20px; */

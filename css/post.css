@@ -18,16 +18,24 @@ a {
     -webkit-font-smoothing: antialiased;
     font-family: "Avenir Next", sans-serif !important;
 }
-.modal-body {
+.modal-header {
+    /* position: fixed; */
+    /* background-color: #fdfdfd; */
     padding: 14px;
+    border-bottom: 2px solid rgb(189, 77, 77);
+}
+.modal-body {
+    overflow-y: scroll;
+    padding: 14px;
+    max-height: 400px;
 }
 .modal-footer {
+    margin: auto;
+    width: 50px;
     border-radius: 5px;
     background-color: #4182e4;
     text-align: center;
     padding: 12px;
-    position: fixed;
-    bottom: 0;
     right: 5px;
 }
 .modal-footer a {

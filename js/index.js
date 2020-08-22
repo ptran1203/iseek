@@ -19,7 +19,8 @@ window.onscroll = function() {
     // ele.style.top = 'px';
   } else {
     ele.style.position = 'fixed'
-    ele.style.top = '0px';
+    ele.style.top = '0';
+    ele.style.height = '100%';
   }
 };
 
