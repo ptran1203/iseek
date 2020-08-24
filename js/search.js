@@ -31,18 +31,19 @@ const template_map = {
 <div class="modal-dialog">
   <div class="modal-header">
     <h3 class="job-detail-title"><a rel="nofollow" href="#post_url#" target="_blank">#title_m#</a></h3>
-    <div class="modal-footer" id="job-footer">
-      <a style="width: 50px" target="_blank" rel="nofollow" href="#post_url#">Apply</a>
-    </div>
+      <a class="apply-btn" target="_blank" rel="nofollow" href="#post_url#">Apply</a>
     <div class="job-infos">
         <div class="job-info far fa-money-bill-alt">
           <span id="salary" style="color:#9e9e9e">#salary_range#</span>
         </div>
-        <div class="job-info far fa-clock	">
-          <span style="color:#9e9e9e">#post_date#</span>
+        <div class="job-info far fa-clock">
+          <span style="color:#58595b">#post_date#</span>
         </div>
         <div class="job-info fas fa-map-marker-alt">
-          <span style="font-weight:100">#address#</span>
+          <span style="color:#58595b">#address#</span> - 
+          <a style="border-bottom:1px dashed; color: #69695b;font-weight:100" target="_blank" href="https://www.google.com/maps?q=#address#">
+          Google map
+          </a>
         </div>
       </div>
     <button class="close-btn"onclick="closeDetail(this)">⛌</button>
@@ -136,12 +137,24 @@ function closeDetail() {
   setMainWidth('50%')
 }
 
+function _singleLine(acc, line) {
+  if (line.endsWith(':')) {
+    return acc +  "<b>" + line + "</b>";
+  }
+
+  if (line.startsWith('-')) {
+    return acc + line.replace('-');
+  }
+
+  return acc + "<li>" + line + "</li>";
+} 
+
 function cleanedContent(content) {
   let blocks = content.split("\n\n");
   return blocks.reduce((acc, block) => {
     let [head, ...tail] = block.split("\n");
     let tailList = tail.reduce((a, t) => {
-      return a + "<li>" + t + "</li>";
+      return _singleLine(a, t);
     }, "");
     acc.push(`<b>${head}</b>\n<ul style="list-style-type: disc">${tailList}</ul>`);
     return acc;
@@ -149,19 +162,14 @@ function cleanedContent(content) {
 }
 
 async function fetchContent(postId) {
-  let instance = document.getElementById("job-content"),
-    footer = document.getElementById("job-footer")
-
+  let instance = document.getElementById("job-content");
   instance.classList.add('spinner', 'spinner-detail')
-  footer.style.display = 'none'
   fetch(getUrl(`api/posts/${postId}?fields=content`))
     .then(response => response.json())
     .then(data => {
       instance.classList.remove('spinner', 'spinner-detail')
       instance.innerHTML =  cleanedContent(data['content'])
-     
-      footer.style.display = 'block'
-      // footer.style.position = 'fixed'
+
     })
   
   estimateSalary(postId)

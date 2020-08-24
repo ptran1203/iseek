@@ -29,18 +29,19 @@ a {
     padding: 14px;
     max-height: 400px;
 }
-.modal-footer {
-    margin: auto;
-    width: 50px;
+
+.apply-btn {
+    color: rgb(243, 243, 243);
+    float: center;
+    width: 200px;
     border-radius: 5px;
     background-color: #4182e4;
-    text-align: center;
-    padding: 12px;
-    right: 5px;
+    padding: 12px 30px;
+    position: relative;
+    left: 43%;
 }
-.modal-footer a {
-    color: rgb(243, 243, 243);
-    padding: 5px;
+.apply-btn:hover {
+    background-color: #236edf;
 }
 .job-info {
     display: block;
