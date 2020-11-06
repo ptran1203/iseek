@@ -20,21 +20,23 @@ const template_map = {
 </div>
 </div>
   `,
-2:`
+  2: `
 <li class="keyword">
   <a href="?q=#word#">
     #word#
   </a>
 </li>
 ` ,
-3: `
+  3: `
 <div class="modal-dialog">
   <div class="modal-header">
     <h3 class="job-detail-title"><a rel="nofollow" href="#post_url#" target="_blank">#title_m#</a></h3>
+      <h4 id="job-title" style="text-align:center;color:#4182e4" ></h4>
       <a class="apply-btn" target="_blank" rel="nofollow" href="#post_url#">Apply</a>
     <div class="job-infos">
         <div class="job-info far fa-money-bill-alt">
           <span id="salary" style="color:#9e9e9e">#salary_range#</span>
+          (<span id="salary_est" style="color:#9e9e9e"></span>)
         </div>
         <div class="job-info far fa-clock">
           <span style="color:#58595b">#post_date#</span>
@@ -58,16 +60,15 @@ const template_map = {
 const hostUrl = 'https://iseek.herokuapp.com/'
 
 let gquery
-let qs = (function(a) {
+let qs = (function (a) {
   if (a == "") return {};
   let b = {};
-  for (let i = 0; i < a.length; ++i)
-  {
-      let p=a[i].split('=', 2);
-      if (p.length == 1)
-          b[p[0]] = "";
-      else
-          b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+  for (let i = 0; i < a.length; ++i) {
+    let p = a[i].split('=', 2);
+    if (p.length == 1)
+      b[p[0]] = "";
+    else
+      b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
   }
   return b;
 })(window.location.search.substr(1).split('&'))
@@ -85,9 +86,9 @@ function generate_html(data, templateId) {
   Object.keys(data).map(record => {
     let key = '#' + record + '#'
     content = content.split(key).join(data[record])
-})
+  })
 
-return content
+  return content
 }
 
 function activeElement(self) {
@@ -139,7 +140,7 @@ function closeDetail() {
 
 function _singleLine(acc, line) {
   if (line.endsWith(':')) {
-    return acc +  "<b>" + line + "</b>";
+    return acc + "<b>" + line + "</b>";
   }
 
   if (line.startsWith('-')) {
@@ -147,7 +148,7 @@ function _singleLine(acc, line) {
   }
 
   return acc + "<li>" + line + "</li>";
-} 
+}
 
 function cleanedContent(content) {
   let blocks = content.split("\n\n");
@@ -168,15 +169,15 @@ async function fetchContent(postId) {
     .then(response => response.json())
     .then(data => {
       instance.classList.remove('spinner', 'spinner-detail')
-      instance.innerHTML =  cleanedContent(data['content'])
+      instance.innerHTML = cleanedContent(data['content'])
 
     })
-  
-  estimateSalary(postId)
+
+  getMoreInfo(postId)
 }
 
-async function estimateSalary(postId) {
-  let instance = document.getElementById("salary")
+async function getMoreInfo(postId) {
+  let instance = document.getElementById("salary_est");
   if (instance.innerHTML != '') {
     return
   }
@@ -184,11 +185,18 @@ async function estimateSalary(postId) {
     .then(response => response.json())
     .then(data => {
       instance.style.pointer = 'cursor'
-      instance.innerHTML = '~ $' + Math.round(parseFloat(data['salary']), 2)
+      instance.innerHTML = data['salary_estimate']
+      if (data['years_exp']) {
+        let expText = data['years_exp'].join("~");
+        if (data['years_exp'][0] == data['years_exp'][1]) {
+          expText = data['years_exp'][0];
+        }
+        document.getElementById("job-title").innerHTML = "kinh nghiệm: " + expText + " năm";
+      }
     })
 }
 
-function pagingData(page=1) {
+function pagingData(page = 1) {
   let q = qs['q']
   if (!q) {
     return `?page=${page}`
@@ -199,8 +207,8 @@ function pagingData(page=1) {
 function listPage(total_page, currentPage) {
   let html = ''
   for (let i = 1; i <= total_page; i++) {
-    html += `<li class="${currentPage == i ? 'active': ''}">` +
-            `<a href="${pagingData(i)}">${i}</a></li>`
+    html += `<li class="${currentPage == i ? 'active' : ''}">` +
+      `<a href="${pagingData(i)}">${i}</a></li>`
   }
   return html
 }
@@ -221,7 +229,7 @@ function pagingBar(total_page) {
 /**
 * Jquery
 */
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
   if (qs['page'] == undefined) qs['page'] = 1
   fetchQuery()
 
@@ -244,20 +252,20 @@ jQuery(document).ready(function() {
     }
     $.ajax({
       url: url,
-      method : "GET", 
-      beforeSend: function() {
+      method: "GET",
+      beforeSend: function () {
         footer.css('display', 'none')
         instance.html('')
         loading.addClass('spinner')
       },
-      success : function(response){
+      success: function (response) {
         loading.removeClass('spinner')
         let html = response.data.reduce((acc, item) => {
           acc += generate_html(item, 1)
           return acc
         }, '')
         jobs = response.data
-        if (jobs.length){
+        if (jobs.length) {
           instance.append(
             `<h3 style="${style}">
               ${response.total} ${query_styled} jobs found
@@ -269,23 +277,23 @@ jQuery(document).ready(function() {
           instance.append(pagingBar(response.total_page))
         } else {
           instance.append(
-          `<div class="empty-jobs">
+            `<div class="empty-jobs">
           <p> Sorry, we can't find any ${query_styled} jobs</p>
           </div>`)
         }
         footer.css('margin-top', '50px')
         footer.css('display', 'block')
       },
-      error: function(error){
+      error: function (error) {
         console.log(error.message)
       }
     })
   }
 
   $.ajax({
-    url : getUrl('api/keywords?sort_type=1&limit=10'),
-    method : "GET",
-    success : function(data){
+    url: getUrl('api/keywords?sort_type=1&limit=10'),
+    method: "GET",
+    success: function (data) {
       keywords = data
       let html = data.slice(0, 10).reduce((acc, item) => {
         acc += generate_html(item, 2)
@@ -293,25 +301,25 @@ jQuery(document).ready(function() {
       }, '')
       $('.left-side ol').html(html)
     },
-    error: function(error){
+    error: function (error) {
       console.log(error.message)
     }
   })
 
   $.ajax({
-    url : getUrl('api/count'),
-    method : "GET",
-    success : function(data){
+    url: getUrl('api/count'),
+    method: "GET",
+    success: function (data) {
       keywords = data
-      $('input:text').attr('placeholder',`search ${data.count || 0} IT jobs`);
+      $('input:text').attr('placeholder', `search ${data.count || 0} IT jobs`);
     },
-    error: function(error){
+    error: function (error) {
       console.log(error.message)
     }
   })
 
   // Ajax get search data
-  $('.search-form').on('submit', function() {
+  $('.search-form').on('submit', function () {
     let query = $('.searchTerm').val()
     window.location.replace(`?q=${query}&page=1`)
     return false
